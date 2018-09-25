@@ -46,6 +46,8 @@ short_ref_format=$(jq -r '(.params.short_ref_format // "%s")' < $payload)
 
 configure_git_global "${git_config_payload}"
 
+echo "You are using a defective git resource: " >&2
+exit 1
 if [ -z "$uri" ]; then
   echo "invalid payload (missing uri):" >&2
   cat $payload >&2
